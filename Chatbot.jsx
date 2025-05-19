@@ -17,11 +17,13 @@ export default function Chatbot() {
     setMessages(newMessages);
     setInput('');
 
-    const res = await fetch('http://localhost:8000/api/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: input }),
-    });
+    const res = await fetch('https://quality-chatbot-backend.onrender.com/api/ask',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: input }),
+      }
+    );
 
     const data = await res.json();
     setMessages([...newMessages, { role: 'assistant', content: data.answer }]);
